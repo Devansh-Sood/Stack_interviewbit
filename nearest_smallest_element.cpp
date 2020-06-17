@@ -1,29 +1,21 @@
-#include <iostream> 
-#include <stack> 
-using namespace std; 
- 
-void printPrevSmaller(int arr[], int n) 
-{
-    stack<int> S;  
-    for (int i=0; i<n; i++) 
-    { 
-        while (!S.empty() && S.top() >= arr[i]) 
-            S.pop(); 
-  
-         
-        if (S.empty()) 
-            cout << "_, "; 
-        else 
-            cout << S.top() << ", "; 
-   
-        S.push(arr[i]); 
-    } 
-} 
-
-int main() 
-{ 
-    int arr[] = {1, 3, 0, 2, 5}; 
-    int n = sizeof(arr)/sizeof(arr[0]); 
-    printPrevSmaller(arr, n); 
-    return 0; 
-} 
+vector<int> Solution::prevSmaller(vector<int> &A) {
+    stack<int>s;
+    vector<int>res(A.size());
+    res.clear();
+    for(int i=0;i<A.size();i++)
+    {
+        while(!s.empty() && A[i]<=s.top())
+        {
+            s.pop();
+        }
+        if(s.empty())
+        {
+            res.push_back(-1);
+        }
+        else{
+            res.push_back(s.top());
+        }
+        s.push(A[i]);
+    }
+    return res;
+}
